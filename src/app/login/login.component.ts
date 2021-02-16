@@ -3,7 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthHelperService } from '../auth-helper.service';
 import { BaseComponent } from '../base-component';
-import { LoginService } from './login.service';
+import { UserService } from '../user.service';
 
 @Component({
   templateUrl: './login.component.html',
@@ -13,7 +13,7 @@ export class LoginComponent extends BaseComponent implements OnInit {
   form: FormGroup;
   constructor(
     private formBuilder: FormBuilder,
-    private loginService:LoginService,
+    private userService:UserService,
     private authHelperService:AuthHelperService,
     private router: Router
   ) {
@@ -24,7 +24,7 @@ export class LoginComponent extends BaseComponent implements OnInit {
     this.createForm();
 
     super.autoUnSubscribe(
-      this.loginService.login$.subscribe((res) => {
+      this.userService.login$.subscribe((res) => {
         if (res.isSuccess) {
           this.authHelperService.storePreference(
             res.data.accessToken,
@@ -46,7 +46,7 @@ export class LoginComponent extends BaseComponent implements OnInit {
   }
 
   login() {
-    this.loginService.login(this.form.value);
+    this.userService.login(this.form.value);
   }
 
 }

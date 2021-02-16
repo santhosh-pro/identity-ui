@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthHelperService } from '../auth-helper.service';
-import { PageOneService } from './page-one.service';
+import { UserService } from '../user.service';
 
 @Component({
   templateUrl: './page-one.component.html',
@@ -10,18 +10,20 @@ import { PageOneService } from './page-one.service';
 export class PageOneComponent implements OnInit {
 
   constructor(
-    private pageOneService:PageOneService,
+    public userService:UserService,
     private authHelperService:AuthHelperService,
     private router:Router
     ) { }
 
   ngOnInit(): void {
-    this.pageOneService.test();
+    this.userService.test();
   }
 
   logout() {
+    this.userService.logout(this.authHelperService.getAccessToken(), this.authHelperService.getRefreshToken());
     this.authHelperService.removePreference();
     this.router.navigate(['login']);
+
   }
 
 }

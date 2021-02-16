@@ -1,4 +1,6 @@
-<p>page-one works!</p>
+<div *ngIf="(userService.test$ | async).isSuccessPersisted">
+<p>{{(userService.test$|async).data.text}}</p>
+</div>
 
 
 <button (click)="logout()">Logout</button>
