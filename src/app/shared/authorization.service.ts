@@ -19,14 +19,7 @@ export class AuthorizationService {
       console.log('Invalid token');
       return false;
     }
-
-    // const isExpired=this.jwtHelperService.isTokenExpired(token);
-
-    // if (isExpired) {
-    //   console.log('Token Expired');
-    //   return false;
-    // }
-
+    
     return true;
   }
 }

@@ -1,19 +1,20 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { AuthHelperService } from '../auth-helper.service';
-import { BaseComponent } from '../base-component';
-import { UserService } from '../user.service';
+import { SignInService } from 'src/app/core/sign_in/sign_in.service';
+import { AuthHelperService } from 'src/app/shared/auth-helper.service';
+import { BaseComponent } from 'src/app/shared/base-component';
 
 @Component({
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.scss']
+  selector: 'app-sign-in',
+  templateUrl: './sign-in.component.html',
+  styleUrls: ['./sign-in.component.scss']
 })
-export class LoginComponent extends BaseComponent implements OnInit {
+export class SignInComponent extends BaseComponent implements OnInit {
   form: FormGroup;
   constructor(
     private formBuilder: FormBuilder,
-    private userService:UserService,
+    private signInService:SignInService,
     private authHelperService:AuthHelperService,
     private router: Router
   ) {
@@ -24,7 +25,7 @@ export class LoginComponent extends BaseComponent implements OnInit {
     this.createForm();
 
     super.autoUnSubscribe(
-      this.userService.login$.subscribe((res) => {
+      this.signInService.signIn$.subscribe((res) => {
         if (res.isSuccess) {
           this.authHelperService.storePreference(
             res.data.accessToken,
@@ -45,8 +46,8 @@ export class LoginComponent extends BaseComponent implements OnInit {
     });
   }
 
-  login() {
-    this.userService.login(this.form.value);
+  signIn() {
+    this.signInService.execute(this.form.value);
   }
 
 }

@@ -1,15 +1,23 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { AuthorizationGuard } from './authorization.guard';
-import { LoginComponent } from './login/login.component';
-import { PageOneComponent } from './page-one/page-one.component';
-import { PageTwoComponent } from './page-two/page-two.component';
-
+import { DashboardComponent } from './features/dashboard/dashboard.component';
+import { SignInComponent } from './features/sign-in/sign-in.component';
+import { AuthorizationGuard } from './shared/authorization.guard';
 const routes: Routes = [
-  { path: 'page-1', component:PageOneComponent, canActivate: [AuthorizationGuard]},
-  { path: 'page-2', component:PageTwoComponent, canActivate: [AuthorizationGuard]},
-  { path: 'login', component:LoginComponent},
-  { path: '', redirectTo:'login', pathMatch:'full'},
+  {
+    path: 'dashboard',
+    component: DashboardComponent,
+    canActivate: [AuthorizationGuard]
+  },
+  {
+    path: 'sign-in',
+    component: SignInComponent
+  },
+  {
+    path: '',
+    redirectTo: 'sign-in',
+    pathMatch: 'full'
+  },
 ];
 
 @NgModule({

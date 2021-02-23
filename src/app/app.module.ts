@@ -3,22 +3,22 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { PageOneComponent } from './page-one/page-one.component';
-import { PageTwoComponent } from './page-two/page-two.component';
-import { LoginComponent } from './login/login.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-import { AuthorizationGuard } from './authorization.guard';
-import { AuthorizationService } from './authorization.service';
+import { AuthorizationGuard } from './shared/authorization.guard';
+import { AuthorizationService } from './shared/authorization.service';
 import { JwtModule } from '@auth0/angular-jwt';
-import { TokenInterceptor } from './token.interceptor';
+import { TokenInterceptor } from './shared/token.interceptor';
+import { SignInComponent } from './features/sign-in/sign-in.component';
+import { DashboardComponent } from './features/dashboard/dashboard.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { SharedModule } from './shared/shared.module';
 
 @NgModule({
   declarations: [
     AppComponent,
-    PageOneComponent,
-    PageTwoComponent,
-    LoginComponent
+    SignInComponent,
+    DashboardComponent
   ],
   imports: [
     BrowserModule,
@@ -28,6 +28,8 @@ import { TokenInterceptor } from './token.interceptor';
     JwtModule.forRoot({config: {
       tokenGetter: getToken
     }}),
+    BrowserAnimationsModule,
+    SharedModule
   ],
   providers: [
     AuthorizationService,
