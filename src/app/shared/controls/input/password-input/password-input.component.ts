@@ -1,17 +1,19 @@
-import { Component, OnInit, ChangeDetectionStrategy, forwardRef, Input, Output, EventEmitter, OnDestroy } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy, OnDestroy, Input, Output, EventEmitter, forwardRef } from '@angular/core';
 import { ControlValueAccessor, FormControl, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { Subject } from 'rxjs';
+
 @Component({
-  selector: 'app-text-input',
-  templateUrl: './text-input.component.html',
-  styleUrls: ['./text-input.component.scss'],
+  selector: 'app-password-input',
+  templateUrl: './password-input.component.html',
+  styleUrls: ['./password-input.component.scss'],
   providers: [{
     provide: NG_VALUE_ACCESSOR,
-    useExisting: forwardRef(() => TextInputComponent),
+    useExisting: forwardRef(() => PasswordInputComponent),
     multi: true,
-  }]
+  }],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class TextInputComponent implements OnInit, OnDestroy, ControlValueAccessor {
+export class PasswordInputComponent implements OnInit, OnDestroy, ControlValueAccessor {
 
   @Input() isFullWidth: boolean = true;
   @Input() isDisabled: boolean = false;

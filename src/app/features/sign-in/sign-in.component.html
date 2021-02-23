@@ -1,9 +1,54 @@
 <form [formGroup]="form">
-    <input type="input" placeholder="username" formControlName="username">
-    <input type="password" placeholder="Password" formControlName="password">
-    <br/>
 
-    <app-text-input></app-text-input>
-    <button
-  class="py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-red-400"(click)="signIn()">Sign In</button>
+  <app-text-input placeholder='Username' formControlName="username"></app-text-input>
+  <app-password-input placeholder='Password' formControlName="password"></app-password-input>
 
+  <app-button (click)="signIn()" name='Sign In'></app-button>
+
+  <app-expandable title="Welcome" description="This is test">
+    <div>
+      <h1>
+        Hello app-expandable
+      </h1>
+    </div>
+  </app-expandable>
+
+  <app-check-box label='Is Working'></app-check-box>
+  <app-switch label='Slide me'></app-switch>
+
+  <app-select formControlName="username" label='User' [items]="items" [isMultiple]="true"></app-select>
+
+  <app-radio-group>
+    <app-radio-button></app-radio-button>
+    <app-radio-button></app-radio-button>
+  </app-radio-group>
+
+  <app-slider label="Slider 1"></app-slider>
+
+  <app-table [tableColumns]="carsColumns" [tableData]="carsRows" [isPageable]="true"
+    [paginationSizes]="[2,4,6]" [defaultPageSize]="4" (sort)="sortData($event)"></app-table>
+
+  <app-stepper orientation='vertical'>
+    <div>
+      <h1>
+        Hello 1
+      </h1>
+    </div>
+    <div>
+      <h1>
+        Hello 1
+      </h1>
+    </div>
+    <!-- <app-step label="Step 1">
+    
+    </app-step>
+
+    <app-step label="Step 2">
+      <div>
+      <h1>
+        Hello 2
+      </h1>
+    </div>
+    </app-step> -->
+  </app-stepper>
+</form>

@@ -1,17 +1,19 @@
-import { Component, OnInit, ChangeDetectionStrategy, forwardRef, Input, Output, EventEmitter, OnDestroy } from '@angular/core';
+import { Component, OnInit, ChangeDetectionStrategy, forwardRef, OnDestroy, Input, Output, EventEmitter } from '@angular/core';
 import { ControlValueAccessor, FormControl, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { Subject } from 'rxjs';
+
 @Component({
-  selector: 'app-text-input',
-  templateUrl: './text-input.component.html',
-  styleUrls: ['./text-input.component.scss'],
+  selector: 'app-check-box',
+  templateUrl: './check-box.component.html',
+  styleUrls: ['./check-box.component.scss'],
   providers: [{
     provide: NG_VALUE_ACCESSOR,
-    useExisting: forwardRef(() => TextInputComponent),
+    useExisting: forwardRef(() => CheckBoxComponent),
     multi: true,
-  }]
+  }],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class TextInputComponent implements OnInit, OnDestroy, ControlValueAccessor {
+export class CheckBoxComponent implements OnInit, OnDestroy, ControlValueAccessor {
 
   @Input() isFullWidth: boolean = true;
   @Input() isDisabled: boolean = false;
@@ -27,6 +29,11 @@ export class TextInputComponent implements OnInit, OnDestroy, ControlValueAccess
 
   protected _onDestroy = new Subject<void>();
   constructor() { }
+
+  inputChange() {
+    this.changeValue.emit(this.form.value);
+    this.onChange(this.form.value);
+  }
 
   ngOnInit(): void {
     this.form.valueChanges.subscribe((res:any)=>{

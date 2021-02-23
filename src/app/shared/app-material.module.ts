@@ -29,6 +29,8 @@ import { MatTreeModule } from '@angular/material/tree';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatNativeDateModule } from '@angular/material/core';
 import {MatExpansionModule} from '@angular/material/expansion';
+import {MatSliderModule} from '@angular/material/slider';
+import {CdkTableModule} from '@angular/cdk/table';
 
 
 @NgModule({
@@ -69,7 +71,9 @@ import {MatExpansionModule} from '@angular/material/expansion';
     MatDividerModule,
     MatTreeModule,
     MatProgressBarModule,
-    MatExpansionModule
+    MatExpansionModule,
+    MatSliderModule,
+    CdkTableModule
   ],
   exports: [
     CommonModule,
@@ -106,7 +110,9 @@ import {MatExpansionModule} from '@angular/material/expansion';
     MatDividerModule,
     MatTreeModule,
     MatProgressBarModule,
-    MatExpansionModule
+    MatExpansionModule,
+    MatSliderModule,
+    CdkTableModule
   ], providers: [
     MatDatepickerModule,
   ]
