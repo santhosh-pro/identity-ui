@@ -16,7 +16,7 @@
   <app-check-box label='Is Working'></app-check-box>
   <app-switch label='Slide me'></app-switch>
 
-  <app-select formControlName="username" label='User' [items]="items" [isMultiple]="true"></app-select>
+  <app-select formControlName="username" [display]="'title'" [value]="'id'" label='User' [items]="items" [isMultiple]="true"></app-select>
 
   <app-radio-group>
     <app-radio-button></app-radio-button>
@@ -25,8 +25,8 @@
 
   <app-slider label="Slider 1"></app-slider>
 
-  <app-table [tableColumns]="carsColumns" [tableData]="carsRows" [isPageable]="true"
-    [paginationSizes]="[2,4,6]" [defaultPageSize]="4" (sort)="sortData($event)"></app-table>
+  <app-table [tableColumns]="carsColumns" [tableData]="carsRows" [isPageable]="true" [isSortable]="true"
+    [paginationSizes]="[2,4,6,10]" [defaultPageSize]="10" (sort)="sortData($event)"></app-table>
 
   <app-stepper orientation='vertical'>
     <div>

@@ -5,8 +5,7 @@ import { SignInService } from 'src/app/core/sign_in/sign_in.service';
 import { AuthHelperService } from 'src/app/shared/auth-helper.service';
 import { BaseComponent } from 'src/app/shared/base-component';
 import { SelectOption } from 'src/app/shared/controls/input/select/select-option';
-import { TableColumn } from 'src/app/shared/controls/output/table/table.component';
-
+import { TableColumn } from 'src/app/shared/controls/output/table/table-column';
 @Component({
   selector: 'app-sign-in',
   templateUrl: './sign-in.component.html',
@@ -27,14 +26,17 @@ export class SignInComponent extends BaseComponent implements OnInit {
     {
       name:'Tesla',
       dataKey:'manufacturer',
+      isSortable:true
     },
     {
       name:'Tesla 2',
       dataKey:'model',
+      isSortable:true
     },
     {
       name:'Tesla t',
       dataKey:'powerSupply',
+      isSortable:true
     }
   ];
   public carsRows: any[] = [
@@ -123,15 +125,15 @@ export class SignInComponent extends BaseComponent implements OnInit {
   items:SelectOption[]=[
     {
       id:'1',
-      name:'one'
+      title:'one'
     },
     {
       id:'2',
-      name:'two'
+      title:'two'
     },
     {
       id:'3',
-      name:'three'
+      title:'three'
     }
   ]
 

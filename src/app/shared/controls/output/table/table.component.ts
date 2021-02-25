@@ -2,6 +2,7 @@ import { Component, OnInit, ChangeDetectionStrategy, Input, ViewChild, Output, E
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort, Sort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
+import { TableColumn } from './table-column';
 
 @Component({
   selector: 'app-table',
@@ -18,7 +19,6 @@ export class TableComponent implements OnInit, AfterViewInit {
 
   @Input() isPageable = false;
   @Input() isSortable = false;
-  @Input() isFilterable = false;
   @Input() tableColumns: TableColumn[];
   @Input() rowActionIcon: string;
   @Input() paginationSizes: number[] = [5, 10, 15];
@@ -54,11 +54,6 @@ export class TableComponent implements OnInit, AfterViewInit {
     this.tableDataSource.sort = this.matSort;
   }
 
-  applyFilter(event: Event) {
-    const filterValue = (event.target as HTMLInputElement).value;
-    this.tableDataSource.filter = filterValue.trim().toLowerCase();
-  }
-
   sortTable(sortParameters: Sort) {
     // defining name of data property, to sort by, instead of column name
     sortParameters.active = this.tableColumns.find(column => column.name === sortParameters.active).dataKey;
@@ -69,12 +64,4 @@ export class TableComponent implements OnInit, AfterViewInit {
     this.rowAction.emit(row);
   }
 
-}
-
-
-export interface TableColumn {
-  name: string; // column name
-  dataKey: string; // name of key of the actual data in this column
-  position?: 'right' | 'left'; // should it be right-aligned or left-aligned?
-  isSortable?: boolean; // can a column be sorted?
 }

@@ -1,15 +1,6 @@
 <div class="example-container mat-elevation-z8">
 
   <ng-container>
-
-    <!-- Filter -->
-    <ng-container *ngIf="isFilterable" [matColumnDef]="this.rowActionIcon">
-      <mat-form-field>
-        <mat-label>Filter</mat-label>
-        <input matInput (keyup)="applyFilter($event)" placeholder="filter">
-      </mat-form-field>
-    </ng-container>
-
     <!-- Table -->
     <table mat-table [dataSource]="tableDataSource" matSort (matSortChange)="sortTable($event)">
 

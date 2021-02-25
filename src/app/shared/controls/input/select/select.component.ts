@@ -19,6 +19,8 @@ export class SelectComponent implements OnInit, OnDestroy, ControlValueAccessor 
   @Input() isFullWidth: boolean = true;
   @Input() isDisabled: boolean = false;
   @Input() isMultiple: boolean = false;
+  @Input() display: string = '';
+  @Input() value: string = '';
   @Input() label: string = '';
   @Input() placeholder: string = '';
   @Input() items: SelectOption[] = [];
